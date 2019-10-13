@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+
+​
+
+<head>
+
+  <title>My Leaflet.js Map</title>
+
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js">
+
+  </script>
+
+  <style>
+
+        html,
+
+        body,
+
+        #map {
+
+            height: 100%;
+
+        }
+
+    </style>
+
+  ​
+
+  <script type="text/javascript">
+
+        function init() {
+
+            var map = L.map('map').setView([22, 114], 13);
+
+            var osmLink = "<a href='http://www.openstreetmap.org'>Open StreetMap</a>";
+
+            L.tileLayer(
+
+                'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+                    attribution: '&copy; ' + osmLink,
+
+                    maxZoom: 18
+
+                }).addTo(map);
+                showAirQuality(map);
+                }
+
+function showAirQuality(map){
+
+$.getJSON("connection.php",function(data){
+    for (var i=0; i<data.length;i++){
+        var location = new L.LatLng(data[i].Lat,data[i].Longi);
+        var deviceID = data[i].Device_ID;
+
+        var marker = new L.Marker(location,{title:deviceID});
+        var content = "<h2>" + deviceID + "</h2>";
+
+        marker.bindPopup(content,{
+            maxWidth:'200'
+        });
+        marker.addTo(map);
+
+    }
+
+});
+}
+
+    </script>
+
+</head>
+
+​
+
+<body onload="init()">
+
+<div id="map"></div>
+
+</body>
+
+​
+
+</html>
