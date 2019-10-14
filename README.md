@@ -24,7 +24,7 @@ Decisions:
 
  * Accesing database directly from vizualization because its clean. The approch from [Marine_Litter_Detective github repo](https://github.com/MakerBay/Marine_Litter_Detective) has .gpx files that are visualized.
 
-![Decision](Decision.jpeg)
+ * ![Decision](Decision.jpeg)
 
 We are using idea #2 after finding pros(+) and cons(-)
 
